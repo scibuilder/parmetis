@@ -16,13 +16,6 @@ execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${METIS_PATH} metis)
 # endif()
 # set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MPI_COMPILE_FLAGS}")
 
-# Prepare libraries.
-if(SHARED)
-  set(ParMETIS_LIBRARY_TYPE SHARED)
-else()
-  set(ParMETIS_LIBRARY_TYPE STATIC)
-endif()
-
 include(${GKLIB_PATH}/GKlibSystem.cmake)
 
 # List of paths that the compiler will search for header files.

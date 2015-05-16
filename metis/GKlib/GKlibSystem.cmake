@@ -10,7 +10,11 @@ option(DEBUG "add debugging support" OFF)
 option(GPROF "add gprof support" OFF)
 option(OPENMP "enable OpenMP support" OFF)
 option(PCRE "enable PCRE support" OFF)
-option(GKREGEX "enable GKREGEX support" OFF)
+if(MSVC)
+  option(GKREGEX "enable GKREGEX support" ON)
+else()
+  option(GKREGEX "enable GKREGEX support" OFF)
+endif()
 option(GKRAND "enable GKRAND support" OFF)
 
 # Add compiler flags.

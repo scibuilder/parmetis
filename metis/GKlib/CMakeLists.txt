@@ -7,7 +7,7 @@ unset(abs)
 include(GKlibSystem.cmake)
 
 include_directories(".")
-add_library(GKlib STATIC ${GKlib_sources})
+add_library(GKlib ${GKlib_sources})
 if(UNIX)
   target_link_libraries(GKlib m)
 endif(UNIX)

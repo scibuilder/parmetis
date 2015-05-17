@@ -100,6 +100,12 @@ if(HAVE_GETLINE)
   add_definitions(-DHAVE_GETLINE)
 endif(HAVE_GETLINE)
 
+if(MSVC AND BUILD_SHARED_LIBS)
+  add_definitions(-DMETIS_EXPORT=__declspec\(dllexport\))
+else()
+  add_definitions(-DMETIS_EXPORT=)
+endif()
+
 # Custom check for TLS.
 if(MSVC)
   add_definitions(-D__thread=__declspec\(thread\))

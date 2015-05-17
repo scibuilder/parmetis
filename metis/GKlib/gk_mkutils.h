@@ -15,7 +15,8 @@
 /*************************************************************************/\
 /*! The macro for gk_?array2csr() routine */\
 /**************************************************************************/\
-void PRFX ## array2csr(TYPE n, TYPE range, TYPE *array, TYPE *ptr, TYPE *ind)\
+METIS_EXPORT void \
+PRFX ## array2csr(TYPE n, TYPE range, TYPE *array, TYPE *ptr, TYPE *ind)\
 {\
   TYPE i;\
 \
@@ -34,7 +35,7 @@ void PRFX ## array2csr(TYPE n, TYPE range, TYPE *array, TYPE *ptr, TYPE *ind)\
 
 
 #define GK_MKARRAY2CSR_PROTO(PRFX, TYPE)\
-  void PRFX ## array2csr(TYPE n, TYPE range, TYPE *array, TYPE *ptr, TYPE *ind);\
+  METIS_EXPORT void PRFX ## array2csr(TYPE n, TYPE range, TYPE *array, TYPE *ptr, TYPE *ind);
 
 
 #endif

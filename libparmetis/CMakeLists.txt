@@ -7,10 +7,6 @@ add_library(parmetis ${parmetis_sources})
 # Link with metis and MPI libraries.
 target_link_libraries(parmetis metis ${MPI_LIBRARIES})
 set_target_properties(parmetis PROPERTIES LINK_FLAGS "${MPI_LINK_FLAGS}")
-if(MSVC)
-  include(GenerateExportHeader)
-  generate_export_header(parmetis)
-endif()
 
 install(TARGETS parmetis
   LIBRARY DESTINATION lib

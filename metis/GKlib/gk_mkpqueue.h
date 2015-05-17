@@ -16,7 +16,7 @@
 /*************************************************************************/\
 /*! This function creates and initializes a priority queue */\
 /**************************************************************************/\
-PQT *FPRFX ## Create(size_t maxnodes)\
+METIS_EXPORT PQT *FPRFX ## Create(size_t maxnodes)\
 {\
   PQT *queue; \
 \
@@ -30,7 +30,7 @@ PQT *FPRFX ## Create(size_t maxnodes)\
 /*************************************************************************/\
 /*! This function initializes the data structures of the priority queue */\
 /**************************************************************************/\
-void FPRFX ## Init(PQT *queue, size_t maxnodes)\
+METIS_EXPORT void FPRFX ## Init(PQT *queue, size_t maxnodes)\
 {\
   queue->nnodes = 0;\
   queue->maxnodes = maxnodes;\
@@ -43,7 +43,7 @@ void FPRFX ## Init(PQT *queue, size_t maxnodes)\
 /*************************************************************************/\
 /*! This function resets the priority queue */\
 /**************************************************************************/\
-void FPRFX ## Reset(PQT *queue)\
+METIS_EXPORT void FPRFX ## Reset(PQT *queue)\
 {\
   gk_idx_t i;\
   gk_idx_t *locator=queue->locator;\
@@ -58,7 +58,7 @@ void FPRFX ## Reset(PQT *queue)\
 /*************************************************************************/\
 /*! This function frees the internal datastructures of the priority queue */\
 /**************************************************************************/\
-void FPRFX ## Free(PQT *queue)\
+METIS_EXPORT void FPRFX ## Free(PQT *queue)\
 {\
   if (queue == NULL) return;\
   gk_free((void **)&queue->heap, &queue->locator, LTERM);\
@@ -70,7 +70,7 @@ void FPRFX ## Free(PQT *queue)\
 /*! This function frees the internal datastructures of the priority queue \
     and the queue itself */\
 /**************************************************************************/\
-void FPRFX ## Destroy(PQT *queue)\
+METIS_EXPORT void FPRFX ## Destroy(PQT *queue)\
 {\
   if (queue == NULL) return;\
   FPRFX ## Free(queue);\
@@ -81,7 +81,7 @@ void FPRFX ## Destroy(PQT *queue)\
 /*************************************************************************/\
 /*! This function returns the length of the queue */\
 /**************************************************************************/\
-size_t FPRFX ## Length(PQT *queue)\
+METIS_EXPORT size_t FPRFX ## Length(PQT *queue)\
 {\
   return queue->nnodes;\
 }\
@@ -90,7 +90,7 @@ size_t FPRFX ## Length(PQT *queue)\
 /*************************************************************************/\
 /*! This function adds an item in the priority queue */\
 /**************************************************************************/\
-int FPRFX ## Insert(PQT *queue, VT node, KT key)\
+METIS_EXPORT int FPRFX ## Insert(PQT *queue, VT node, KT key)\
 {\
   gk_idx_t i, j;\
   gk_idx_t *locator=queue->locator;\
@@ -125,7 +125,7 @@ int FPRFX ## Insert(PQT *queue, VT node, KT key)\
 /*************************************************************************/\
 /*! This function deletes an item from the priority queue */\
 /**************************************************************************/\
-int FPRFX ## Delete(PQT *queue, VT node)\
+METIS_EXPORT int FPRFX ## Delete(PQT *queue, VT node)\
 {\
   gk_idx_t i, j, nnodes;\
   KT newkey, oldkey;\
@@ -192,7 +192,7 @@ int FPRFX ## Delete(PQT *queue, VT node)\
 /*************************************************************************/\
 /*! This function updates the key values associated for a particular item */ \
 /**************************************************************************/\
-void FPRFX ## Update(PQT *queue, VT node, KT newkey)\
+METIS_EXPORT void FPRFX ## Update(PQT *queue, VT node, KT newkey)\
 {\
   gk_idx_t i, j, nnodes;\
   KT oldkey;\
@@ -254,7 +254,7 @@ void FPRFX ## Update(PQT *queue, VT node, KT newkey)\
 /*! This function returns the item at the top of the queue and removes\
     it from the priority queue */\
 /**************************************************************************/\
-VT FPRFX ## GetTop(PQT *queue)\
+METIS_EXPORT VT FPRFX ## GetTop(PQT *queue)\
 {\
   gk_idx_t i, j;\
   gk_idx_t *locator;\
@@ -311,7 +311,7 @@ VT FPRFX ## GetTop(PQT *queue)\
 /*! This function returns the item at the top of the queue. The item is not\
     deleted from the queue. */\
 /**************************************************************************/\
-VT FPRFX ## SeeTopVal(PQT *queue)\
+METIS_EXPORT VT FPRFX ## SeeTopVal(PQT *queue)\
 {\
   return (queue->nnodes == 0 ? -1 : queue->heap[0].val);\
 }\
@@ -321,7 +321,7 @@ VT FPRFX ## SeeTopVal(PQT *queue)\
 /*! This function returns the key of the top item. The item is not\
     deleted from the queue. */\
 /**************************************************************************/\
-KT FPRFX ## SeeTopKey(PQT *queue)\
+METIS_EXPORT KT FPRFX ## SeeTopKey(PQT *queue)\
 {\
   return (queue->nnodes == 0 ? KMAX : queue->heap[0].key);\
 }\
@@ -330,7 +330,7 @@ KT FPRFX ## SeeTopKey(PQT *queue)\
 /*************************************************************************/\
 /*! This function returns the key of a specific item */\
 /**************************************************************************/\
-KT FPRFX ## SeeKey(PQT *queue, VT node)\
+METIS_EXPORT KT FPRFX ## SeeKey(PQT *queue, VT node)\
 {\
   gk_idx_t *locator;\
   KVT *heap;\
@@ -348,7 +348,7 @@ KT FPRFX ## SeeKey(PQT *queue, VT node)\
     hMETIS and is not general!*/\
 /**************************************************************************/\
 /*\
-VT FPRFX ## SeeConstraintTop(PQT *queue, KT maxwgt, KT *wgts)\
+METIS_EXPORT VT FPRFX ## SeeConstraintTop(PQT *queue, KT maxwgt, KT *wgts)\
 {\
   gk_idx_t i;\
 \
@@ -378,7 +378,7 @@ VT FPRFX ## SeeConstraintTop(PQT *queue, KT maxwgt, KT *wgts)\
 /*************************************************************************/\
 /*! This functions checks the consistency of the heap */\
 /**************************************************************************/\
-int FPRFX ## CheckHeap(PQT *queue)\
+METIS_EXPORT int FPRFX ## CheckHeap(PQT *queue)\
 {\
   gk_idx_t i, j;\
   size_t nnodes;\
@@ -411,21 +411,21 @@ int FPRFX ## CheckHeap(PQT *queue)\
 
 
 #define GK_MKPQUEUE_PROTO(FPRFX, PQT, KT, VT)\
-  PQT *  FPRFX ## Create(size_t maxnodes);\
-  void   FPRFX ## Init(PQT *queue, size_t maxnodes);\
-  void   FPRFX ## Reset(PQT *queue);\
-  void   FPRFX ## Free(PQT *queue);\
-  void   FPRFX ## Destroy(PQT *queue);\
-  size_t FPRFX ## Length(PQT *queue);\
-  int    FPRFX ## Insert(PQT *queue, VT node, KT key);\
-  int    FPRFX ## Delete(PQT *queue, VT node);\
-  void   FPRFX ## Update(PQT *queue, VT node, KT newkey);\
-  VT     FPRFX ## GetTop(PQT *queue);\
-  VT     FPRFX ## SeeTopVal(PQT *queue);\
-  KT     FPRFX ## SeeTopKey(PQT *queue);\
-  KT     FPRFX ## SeeKey(PQT *queue, VT node);\
-  VT     FPRFX ## SeeConstraintTop(PQT *queue, KT maxwgt, KT *wgts);\
-  int    FPRFX ## CheckHeap(PQT *queue);\
+  METIS_EXPORT PQT *  FPRFX ## Create(size_t maxnodes);\
+  METIS_EXPORT void   FPRFX ## Init(PQT *queue, size_t maxnodes);\
+  METIS_EXPORT void   FPRFX ## Reset(PQT *queue);\
+  METIS_EXPORT void   FPRFX ## Free(PQT *queue);\
+  METIS_EXPORT void   FPRFX ## Destroy(PQT *queue);\
+  METIS_EXPORT size_t FPRFX ## Length(PQT *queue);\
+  METIS_EXPORT int    FPRFX ## Insert(PQT *queue, VT node, KT key);\
+  METIS_EXPORT int    FPRFX ## Delete(PQT *queue, VT node);\
+  METIS_EXPORT void   FPRFX ## Update(PQT *queue, VT node, KT newkey);\
+  METIS_EXPORT VT     FPRFX ## GetTop(PQT *queue);\
+  METIS_EXPORT VT     FPRFX ## SeeTopVal(PQT *queue);\
+  METIS_EXPORT KT     FPRFX ## SeeTopKey(PQT *queue);\
+  METIS_EXPORT KT     FPRFX ## SeeKey(PQT *queue, VT node);\
+  METIS_EXPORT VT     FPRFX ## SeeConstraintTop(PQT *queue, KT maxwgt, KT *wgts);\
+  METIS_EXPORT int    FPRFX ## CheckHeap(PQT *queue);
 
 
 /* This is how these macros are used

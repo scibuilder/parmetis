@@ -9,12 +9,11 @@ set(METIS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/metis CACHE PATH "path to METIS")
 execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${METIS_PATH} metis)
 
 # Search for MPI.
-# GK commented this out as it seems to be creating problems
-# include(FindMPI)
-# if(NOT MPI_FOUND)
-#   message(FATAL_ERROR "mpi is not found")
-# endif()
-# set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MPI_COMPILE_FLAGS}")
+include(FindMPI)
+if(NOT MPI_FOUND)
+  message(FATAL_ERROR "mpi is not found")
+endif()
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${MPI_COMPILE_FLAGS}")
 
 include(${GKLIB_PATH}/GKlibSystem.cmake)
 

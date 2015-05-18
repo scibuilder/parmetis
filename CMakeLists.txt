@@ -25,7 +25,7 @@ include_directories(${GKLIB_PATH})
 include_directories(${METIS_PATH}/include)
 
 # List of directories that cmake will look for CMakeLists.txt
-add_subdirectory(${METIS_PATH}/libmetis ${CMAKE_BINARY_DIR}/libmetis)
+add_subdirectory(${METIS_PATH}/libmetis ${METIS_PATH}/include)
 add_subdirectory(include)
 add_subdirectory(libparmetis)
 if(NOT DISABLE_PARMETIS_PROGRAMS)

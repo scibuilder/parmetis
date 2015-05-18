@@ -1,12 +1,10 @@
 cmake_minimum_required(VERSION 2.8)
 project(ParMETIS)
 
-set(GKLIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/metis/GKlib CACHE PATH "path to GKlib")
-set(METIS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/metis CACHE PATH "path to METIS")
-
-# Symlink ./metis to wherever metis is. This allows files to be
-# included from metis/libmetis/.
-execute_process(COMMAND ${CMAKE_COMMAND} -E create_symlink ${METIS_PATH} metis)
+set(GKLIB_PATH ${CMAKE_CURRENT_SOURCE_DIR}/metis/GKlib)
+set(METIS_PATH ${CMAKE_CURRENT_SOURCE_DIR}/metis)
+message(STATUS "GKLIB_PATH=${GKLIB_PATH}")
+message(STATUS "METIS_PATH=${METIS_PATH}")
 
 # Search for MPI.
 include(FindMPI)
@@ -25,8 +23,8 @@ include_directories(${GKLIB_PATH})
 include_directories(${METIS_PATH}/include)
 
 # List of directories that cmake will look for CMakeLists.txt
-add_subdirectory(${METIS_PATH}/libmetis)
-add_subdirectory(${METIS_PATH}/include)
+add_subdirectory(metis/libmetis)
+add_subdirectory(metis/include)
 add_subdirectory(include)
 add_subdirectory(libparmetis)
 if(NOT DISABLE_PARMETIS_PROGRAMS)

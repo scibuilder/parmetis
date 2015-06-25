@@ -1,5 +1,5 @@
 # Include directories for library code.
-include_directories(.)
+include_directories(BEFORE .)
 # Find sources.
 file(GLOB parmetis_sources *.c)
 # Create libparmetis

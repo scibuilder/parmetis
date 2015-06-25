@@ -1,4 +1,4 @@
-include_directories(.)
+include_directories(BEFORE .)
 # Create programs.
 add_executable(ptest ptest.c io.c adaptgraph.c)
 add_executable(mtest mtest.c io.c)

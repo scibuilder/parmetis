@@ -17,10 +17,10 @@ include(${GKLIB_PATH}/GKlibSystem.cmake)
 
 # List of paths that the compiler will search for header files.
 # i.e., the -I equivalent
-include_directories(include)
-include_directories(${MPI_C_INCLUDE_PATH})
-include_directories(${GKLIB_PATH})
-include_directories(${METIS_PATH}/include)
+include_directories(BEFORE include)
+include_directories(BEFORE ${MPI_C_INCLUDE_PATH})
+include_directories(BEFORE ${GKLIB_PATH})
+include_directories(BEFORE ${METIS_PATH}/include)
 
 # List of directories that cmake will look for CMakeLists.txt
 add_subdirectory(metis/libmetis)

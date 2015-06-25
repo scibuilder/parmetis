@@ -1,5 +1,5 @@
 # Where the header files reside
-#include_directories(../)
+#include_directories(BEFORE ../)
 
 # Build program.
 add_executable(strings strings.c)

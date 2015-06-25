@@ -1,5 +1,5 @@
 # Add this directory for internal users.
-include_directories(.)
+include_directories(BEFORE .)
 # Find sources.
 file(GLOB metis_sources *.c)
 # Build libmetis.

@@ -18,7 +18,10 @@ This file contains functions dealing with error reporting and termination
 
 /* These are the jmp_buf for the graceful exit in case of severe errors.
    Multiple buffers are defined to allow for recursive invokation. */
-#define MAX_JBUFS 128
+
+/* NOTE: The original value was 128, but it has been changed to 24 (following
+         the same approach as homebrew) in order to avoid an LLVM bug */
+#define MAX_JBUFS 24
 __thread int gk_cur_jbufs=-1;
 __thread jmp_buf gk_jbufs[MAX_JBUFS];
 __thread jmp_buf gk_jbuf;
